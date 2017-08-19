@@ -31,7 +31,7 @@ public:
 	
 	FVector DesiredMovement;
 
-	UPROPERTY(EditAnywhere) float Health;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) float Health;
 
 	void MoveHorizontaly(float AxisValue);
 
