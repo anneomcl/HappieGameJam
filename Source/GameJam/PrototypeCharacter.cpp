@@ -10,20 +10,18 @@ APrototypeCharacter::APrototypeCharacter()
 	// Setup Camera and attach it to the Root Component
 	{
 		// Use a spring arm to give the camera smooth, natural-feeling motion.
-		USpringArmComponent* SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraAttachmentArm"));
+		SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraAttachmentArm"));
 		SpringArm->SetupAttachment(RootComponent);
 		SpringArm->RelativeRotation = FRotator(-45.f, 0.f, 0.f);
 		SpringArm->TargetArmLength = 400.0f;
 		SpringArm->bEnableCameraLag = true;
 		SpringArm->CameraLagSpeed = 3.0f;
 		// Create a camera and attach to our spring arm
-		UCameraComponent* Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("ActualCamera"));
+		Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("ActualCamera"));
 		Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 	}
 
-
-	OurVisibleComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("OurVisibleComponent"));
-	OurVisibleComponent->SetupAttachment(RootComponent);
+	Health = 100.0f;
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }

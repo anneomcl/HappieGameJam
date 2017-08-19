@@ -25,9 +25,10 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	UPROPERTY(EditAnywhere) USceneComponent* OurVisibleComponent;
-
+	
+	UPROPERTY(EditAnywhere) USpringArmComponent* SpringArm;
+	UPROPERTY(EditAnywhere) UCameraComponent* Camera;
+	
 	FVector DesiredMovement;
 
 	UPROPERTY(EditAnywhere) float Health;
