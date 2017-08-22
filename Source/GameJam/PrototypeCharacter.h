@@ -24,13 +24,22 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	UFUNCTION()
+		virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditAnywhere)
-	USceneComponent* OurVisibleComponent;
+	UFUNCTION()
+		void BeginOverlap(UPrimitiveComponent* Comp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult);
 
-	FVector CurrentVelocity;
+	UPROPERTY(EditAnywhere) USpringArmComponent* SpringArm;
+	UPROPERTY(EditAnywhere) UCameraComponent* Camera;
+	
+	FVector DesiredMovement;
 
-	void MoveHorizontaly(float AxisValue);
+	UBoxComponent* TriggerBox;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) float Health;
+
+	void MoveHorizontally(float AxisValue);
+	void BasicAttack(float AxisValue);
 
 };
