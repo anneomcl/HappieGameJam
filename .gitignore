@@ -45,6 +45,9 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Unreal Engine generated files
+
 Intermediate/
 Binaries/
 *.sln
@@ -52,3 +55,4 @@ Binaries/
 Saved/
 Content/StarterContent/
 *.db
+*.opendb

@@ -24,6 +24,12 @@ APrototypeCharacter::APrototypeCharacter()
 	Health = 100.0f;
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
+
+	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Collider"));
+	TriggerBox->bGenerateOverlapEvents = true;
+	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &APrototypeCharacter::BeginOverlap);
+	TriggerBox->SetCollisionProfileName(TEXT("OverlapAll"));
+	TriggerBox->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -48,10 +54,21 @@ void APrototypeCharacter::Tick(float DeltaTime)
 void APrototypeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	InputComponent->BindAxis("HorizontalMovement", this, &APrototypeCharacter::MoveHorizontaly);
+	SetActorEnableCollision(true);
+	InputComponent->BindAxis("HorizontalMovement", this, &APrototypeCharacter::MoveHorizontally);
+	InputComponent->BindAxis("BasicAttack", this, &APrototypeCharacter::BasicAttack);
 }
 
-void APrototypeCharacter::MoveHorizontaly(float AxisValue) 
+void APrototypeCharacter::BeginOverlap(UPrimitiveComponent* Comp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult)
+{
+	UE_LOG(LogTemp, Warning, TEXT("HIT!"));
+}
+
+void APrototypeCharacter::BasicAttack(float AxisValue)
+{
+}
+
+void APrototypeCharacter::MoveHorizontally(float AxisValue) 
 {
 	DesiredMovement.Y += FMath::Clamp(AxisValue, -1.0f, 1.0f) * 100;
 }
