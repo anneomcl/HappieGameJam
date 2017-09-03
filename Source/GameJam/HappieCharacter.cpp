@@ -37,6 +37,7 @@ AHappieCharacter::AHappieCharacter()
 		GetCharacterMovement()->bOrientRotationToMovement = false;
 		GetCharacterMovement()->AirControl = 1.0f;
 		GetCharacterMovement()->JumpZVelocity = 900.0f;
+		
 	}
 	// Health System
 	{
