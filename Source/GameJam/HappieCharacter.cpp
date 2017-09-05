@@ -74,5 +74,7 @@ void AHappieCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 void AHappieCharacter::MoveHorizontally(float AxisValue)
 {
 	AddMovementInput(FVector(0.f, 1.f, 0.f), AxisValue);
+	if (AxisValue < 0) this->SetActorRotation(FQuat(0, 0, 180, 0), ETeleportType::TeleportPhysics);
+	if (AxisValue > 0) this->SetActorRotation(FQuat(0, 0, 0, 0), ETeleportType::TeleportPhysics);
 }
 
